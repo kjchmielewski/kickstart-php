@@ -13,11 +13,13 @@ require_once (APPLICATION_PATH . '/class/View.class.php');
 
 $i = filter_input(INPUT_GET, 'i', FILTER_VALIDATE_INT);
 $n = filter_input(INPUT_GET, 'n', FILTER_DEFAULT);
+$v = filter_input(INPUT_GET, 'v', FILTER_DEFAULT);
 
 if ($i && $n) {
     $view = new View(APPLICATION_PATH . '/views/');
     $view->set('I', $i);
     $view->set('N', $n);
+    $view->set('V', $v ? $v : '7.0');
     header('Content-Type: text/plain; charset=UTF-8');
     echo $view->render('ks');
 }

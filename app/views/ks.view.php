@@ -1,6 +1,6 @@
 #version=RHEL7
 
-# instalacja SL 7.0 netinst
+# instalacja SL <?php echo $V; ?> netinst
 # sieć dhcp
 # epel
 
@@ -8,7 +8,7 @@
 auth --enableshadow --passalgo=sha512
 
 # Use network installation
-url --url="http://ftp.scientificlinux.org/linux/scientific/7.0/x86_64/os"
+url --url="http://ftp.scientificlinux.org/linux/scientific/<?php echo $V; ?>/x86_64/os"
 
 # Use text mode install
 text
