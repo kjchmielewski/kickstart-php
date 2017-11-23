@@ -21,8 +21,8 @@ lang pl_PL.UTF-8
 keyboard pl2
 
 # Network information
-network --onboot yes --device eth0 --bootproto static --noipv6 --ip=172.19.243.<?php echo $I; ?> --netmask=255.255.255.0 --hostname=<?php echo $N; ?>.dro.nask.pl
 network --onboot yes --device eth1 --bootproto static --noipv6 --ip=10.243.255.<?php echo $I; ?> --netmask=255.255.255.0 --gateway=10.243.255.1 --nameserver=172.19.243.1
+network --onboot yes --device eth0 --bootproto static --noipv6 --ip=172.19.243.<?php echo $I; ?> --netmask=255.255.255.0 --hostname=<?php echo $N; ?>.dro.nask.pl
 
 # Root password
 # domyślne - NASK

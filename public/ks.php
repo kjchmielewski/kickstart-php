@@ -13,7 +13,7 @@ require_once (APPLICATION_PATH . '/class/View.class.php');
 
 $i = filter_input(INPUT_GET, 'i', FILTER_VALIDATE_INT);
 $n = filter_input(INPUT_GET, 'n', FILTER_DEFAULT);
-echo $n;
+
 if ($i && $n) {
     $view = new View(APPLICATION_PATH . '/views/');
     $view->set('I', $i);

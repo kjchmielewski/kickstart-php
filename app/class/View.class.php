@@ -9,7 +9,7 @@ class View
     public function __construct($base)
     {
         $this->base = $base;
-        $this->ext = '.php';
+        $this->ext = '.view.php';
     }
 
     public function set($key, $val)
