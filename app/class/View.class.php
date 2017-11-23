@@ -4,7 +4,7 @@ class View
 {
     private $base;
     private $ext;
-    private $vars = [];
+    private $vars = array();
 
     public function __construct($base)
     {
