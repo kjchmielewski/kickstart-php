@@ -94,7 +94,8 @@ telnet \
 tmux \
 unzip \
 vim-enhanced \
-yum-utils
+yum-utils \
+ovirt-guest-agent-common
 }
 }
 

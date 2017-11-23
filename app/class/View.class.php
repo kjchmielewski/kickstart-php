@@ -19,10 +19,7 @@ class View
 
     public function render($view)
     {
-        foreach ($this->vars as $k => $v)
-        {
-            $$k = $v;
-        }
+        extract($this->vars);
         ob_start();
         include ($this->base . $view . $this->ext);
         return ob_get_clean();
