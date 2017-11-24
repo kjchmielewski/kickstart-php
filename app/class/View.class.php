@@ -2,26 +2,31 @@
 
 class View
 {
-    private $base;
-    private $ext;
-    private $vars = array();
+    private $basePath;
+    private $viewExt;
+    private $viewVars = array();
 
     public function __construct($base)
     {
-        $this->base = $base;
-        $this->ext = '.view.php';
+        $this->basePath = rtrim(strtr($base, '\\', '/'), "/");
+        $this->viewExt = '.view.php';
     }
 
     public function set($key, $val)
     {
-        $this->vars[$key] = $val;
+        $this->viewVars[$key] = $val;
     }
 
     public function render($view)
     {
-        extract($this->vars);
-        ob_start();
-        include ($this->base . $view . $this->ext);
-        return ob_get_clean();
+        $filepath = realpath($this->basePath . '/' . $view . $this->viewExt);
+        $dir = dirname($filepath);
+        if (0 === strcmp($dir, $this->basePath)) {
+            extract($this->viewVars);
+            ob_start();
+            include($filepath);
+            return ob_get_clean();
+        }
+        return '';
     }
 }

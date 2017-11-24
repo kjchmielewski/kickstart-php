@@ -7,19 +7,44 @@
  */
 
 
-define('APPLICATION_PATH',  realpath(__DIR__ . '/../app/'));
+define('APPLICATION_PATH', realpath(__DIR__ . '/../app/'));
 
-require_once (APPLICATION_PATH . '/class/View.class.php');
+require_once(APPLICATION_PATH . '/class/View.class.php');
 
-$i = filter_input(INPUT_GET, 'i', FILTER_VALIDATE_INT);
-$n = filter_input(INPUT_GET, 'n', FILTER_DEFAULT);
-$v = filter_input(INPUT_GET, 'v', FILTER_DEFAULT);
+$os = filter_input(INPUT_GET, 'os', FILTER_DEFAULT);
 
-if ($i && $n) {
-    $view = new View(APPLICATION_PATH . '/views/');
-    $view->set('I', $i);
-    $view->set('N', $n);
-    $view->set('V', $v ? $v : '7.0');
-    header('Content-Type: text/plain; charset=UTF-8');
-    echo $view->render('ks');
+$view = new View(APPLICATION_PATH . '/views');
+
+header('Content-Type: text/plain; charset=UTF-8');
+switch (strtolower($os)) {
+    case 'deb' :
+        $ip = filter_input(INPUT_GET, 'ip', FILTER_VALIDATE_IP);
+        if ($ip) {
+            $view->set('IP', $ip);
+            echo $view->render('d89');
+        }
+        break;
+    case 'deb2' :
+        $ip = filter_input(INPUT_GET, 'ip', FILTER_VALIDATE_IP);
+        $hn = filter_input(INPUT_GET, 'hn', FILTER_DEFAULT);
+        if ($ip && $hn) {
+            $view->set('IP', $ip);
+            $view->set('HN', $hn);
+            echo $view->render('d89_2');
+        }
+        break;
+    case 'sl' :
+        $ip = filter_input(INPUT_GET, 'ip', FILTER_VALIDATE_INT);
+        $hn = filter_input(INPUT_GET, 'hn', FILTER_DEFAULT);
+        if ($ip & $hn) {
+            $view->set('IP', $ip);
+            $view->set('HN', $hn);
+            $ver = filter_input(INPUT_GET, 'ver', FILTER_DEFAULT);
+            $view->set('VER', $ver ? $ver : '7.0');
+            echo $view->render('sl7');
+        }
+        break;
+    default:
+        echo "[ERROR] undefined os";
+        break;
 }
