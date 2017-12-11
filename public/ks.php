@@ -36,7 +36,7 @@ switch (strtolower($os)) {
     case 'sl' :
         $ip = filter_input(INPUT_GET, 'ip', FILTER_VALIDATE_INT);
         $hn = filter_input(INPUT_GET, 'hn', FILTER_DEFAULT);
-        if ($ip & $hn) {
+        if ($ip && $hn) {
             $view->set('IP', $ip);
             $view->set('HN', $hn);
             $ver = filter_input(INPUT_GET, 'ver', FILTER_DEFAULT);
