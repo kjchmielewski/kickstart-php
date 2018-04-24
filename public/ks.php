@@ -16,7 +16,8 @@ $os = filter_input(INPUT_GET, 'os', FILTER_DEFAULT);
 $view = new View(APPLICATION_PATH . '/views');
 
 header('Content-Type: text/plain; charset=UTF-8');
-switch (strtolower($os)) {
+$os = strtolower($os);
+switch ($os) {
     case 'deb' :
         $ip = filter_input(INPUT_GET, 'ip', FILTER_VALIDATE_IP);
         if ($ip) {
@@ -33,7 +34,8 @@ switch (strtolower($os)) {
             echo $view->render('d89_2');
         }
         break;
-    case 'sl' :
+    case 'sl7' :
+    case 'centos' :
         $ip = filter_input(INPUT_GET, 'ip', FILTER_VALIDATE_INT);
         $hn = filter_input(INPUT_GET, 'hn', FILTER_DEFAULT);
         if ($ip && $hn) {
@@ -41,7 +43,7 @@ switch (strtolower($os)) {
             $view->set('HN', $hn);
             $ver = filter_input(INPUT_GET, 'ver', FILTER_DEFAULT);
             $view->set('VER', $ver ? $ver : '7.0');
-            echo $view->render('sl7');
+            echo $view->render($os);
         }
         break;
     default:
