@@ -6,7 +6,6 @@
  * Time: 13:37
  */
 
-
 define('APPLICATION_PATH', realpath(__DIR__ . '/../app/'));
 
 require_once(APPLICATION_PATH . '/class/View.class.php');
